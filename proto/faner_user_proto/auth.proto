@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package api.users.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "faner-user/api/users/v1;v1";
+
+service Auth {
+  rpc Login (LoginRequest) returns (LoginResponse){
+    option (google.api.http) = {
+      post: "/api/login"
+      body: "*"
+    };
+  };
+
+  rpc Logout (LogoutRequest) returns (LogoutResponse){
+    option (google.api.http) = {
+      get: "/api/logout"
+    };
+  };
+}
+
+message LoginRequest {
+  // 账号
+  // @required
+  string username = 1;
+  // 密码
+  // @required
+  string password = 2;
+}
+
+message LoginResponse {
+  // 错误码：正常是0，其他非0。
+  // @required
+  int64 code = 1;
+  // 错误信息
+  // @required
+  string message = 2;
+}
+
+message LogoutRequest {
+
+}
+
+message LogoutResponse {
+  // 错误码：正常是0，其他非0。
+  // @required
+  int64 code = 1;
+  // 错误信息
+  // @required
+  string message = 2;
+}

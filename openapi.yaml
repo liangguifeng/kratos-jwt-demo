@@ -1,0 +1,71 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/apps/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: Auth API
+    version: 0.0.1
+paths:
+    /api/login:
+        post:
+            tags:
+                - Auth
+            operationId: Auth_Login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/LoginRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/LoginResponse'
+    /api/logout:
+        get:
+            tags:
+                - Auth
+            operationId: Auth_Logout
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/LogoutResponse'
+components:
+    schemas:
+        LoginRequest:
+            type: object
+            properties:
+                username:
+                    type: string
+                    description: 账号 @required
+                password:
+                    type: string
+                    description: 密码 @required
+        LoginResponse:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    description: 错误码：正常是0，其他非0。 @required
+                    format: int64
+                message:
+                    type: string
+                    description: 错误信息 @required
+        LogoutResponse:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    description: 错误码：正常是0，其他非0。 @required
+                    format: int64
+                message:
+                    type: string
+                    description: 错误信息 @required
+tags:
+    - name: Auth
