@@ -7,15 +7,15 @@ import (
 	"project/server/auth_server"
 )
 
-// RegisterHTTP 此处注册http接口
-func RegisterHTTP(httpSrv *http.Server) error {
+// RegisterHTTPServer 此处注册http接口
+func RegisterHTTPServer(httpSrv *http.Server) error {
 	user.RegisterAuthHTTPServer(httpSrv, auth_server.NewAuthServer())
 
 	return nil
 }
 
-// RegisterGRPC 此处注册grpc接口
-func RegisterGRPC(grpcSrv *grpc.Server) error {
+// RegisterGRPCServer 此处注册grpc接口
+func RegisterGRPCServer(grpcSrv *grpc.Server) error {
 	user.RegisterAuthServer(grpcSrv, auth_server.NewAuthServer())
 
 	return nil
